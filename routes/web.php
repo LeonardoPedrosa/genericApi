@@ -17,9 +17,14 @@ Route::get('/', function () {
 
 // PRODUTOS
 Route::get('/produto', 'ListaGenericaController@produtos');
+
+Route::get('/produto/{id}', 'ListaGenericaController@consultaProduto');
  
-Route::post('/novo_produto', 'ListaGenericaController@novoProduto');
+Route::post('/produto', 'ListaGenericaController@novoProduto');
  
 Route::put('/produto/{id}', 'ListaGenericaController@editar');
  
 Route::delete('/produto/{id}', 'ListaGenericaController@excluir');
+
+//USUARIO
+Route::get('/usuario/{id}', 'UsuarioController@dadosUsuario');

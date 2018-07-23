@@ -7,13 +7,18 @@ use DB;
 
 class ListaGenericaController extends Controller
 {
-    //
-      // Listando pessoas
+    
+     // Listando produtos
     public function produtos(){
 		return DB::select('select * from listagenerica');
 	}
- 
-	// Cadastrando pessoas
+
+ 	// Listando produto por ID
+ 	public function consultaProduto($id){
+		return DB::select("select * from listagenerica WHERE id = ?", [$id]); 
+ 	}
+
+	// Cadastrando produtos
 	public function novoProduto(Request $request){
 		$data = sizeof($_POST) > 0 ? $_POST : json_decode($request->getContent(), true); // Pega o post ou o raw
  
@@ -23,7 +28,7 @@ class ListaGenericaController extends Controller
 		return ["status" => ($res)?'ok':'erro'];
 	}
  
-	// Editando pessoas
+	// Editando produtos
 	public function editar($id, Request $request){
 		$data = sizeof($_POST) > 0 ? $_POST : json_decode($request->getContent(), true); // Pega o post ou o raw
  
@@ -32,7 +37,7 @@ class ListaGenericaController extends Controller
 		return ["status" => ($res)?'ok':'erro'];
 	}
  
-	// Excluindo pessoas
+	// Excluindo produtos
 	public function excluir($id){
 		$res = DB::delete("delete from listagenerica WHERE id = ?", [$id]); //Excluir
  
